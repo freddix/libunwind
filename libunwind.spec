@@ -1,7 +1,7 @@
 Summary:	libunwind - a (mostly) platform-independent unwind API
 Name:		libunwind
 Version:	1.1
-Release:	1
+Release:	2
 License:	MIT
 Group:		Libraries
 #Source0:	http://download.savannah.gnu.org/releases/libunwind/%{name}-%{version}.tar.gz
