@@ -1,16 +1,11 @@
-Summary:	libunwind - a (mostly) platform-independent unwind API
+# based on PLD Linux spec git://git.pld-linux.org/packages/.git
+Summary:	(mostly) Platform-independent unwind API
 Name:		libunwind
 Version:	1.1
-Release:	3
+Release:	4
 License:	MIT
 Group:		Libraries
-#Source0:	http://download.savannah.gnu.org/releases/libunwind/%{name}-%{version}.tar.gz
-# use git snapshot for now, can't be downloaded from savannah currently
-# git clone git://git.sv.gnu.org/libunwind.git
-# git archive --format=tar --prefix=libunwind-1.1/ HEAD | xz -c > libunwind-1.1.tar.xz
-# 679b65cd221efa7df42b6a369c7b1ebe9d8b5c3e
-Source0:	%{name}-%{version}.tar.xz
-# Source0-md5:	62f418da972f9d685f9de2acf16ae39f
+Source0:	http://download.savannah.gnu.org/releases/libunwind/%{name}-%{version}.tar.gz
 Patch0:		%{name}-link.patch
 URL:		http://www.nongnu.org/libunwind/
 BuildRequires:	autoconf
@@ -21,9 +16,8 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %define		specflags	-U_FORTIFY_SOURCE
 
 %description
-The goal of the libunwind project is to define a portable and
-efficient C programming interface (API) to determine the call-chain
-of a program.
+Portable and efficient C programming interface (API) to determine the
+call-chain of a program.
 
 %package devel
 Summary:	Header files for libunwind library
@@ -53,6 +47,8 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/*.la
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -79,4 +75,5 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/libunwind-generic.a
 %{_includedir}/*.h
 %{_pkgconfigdir}/*.pc
+%{_mandir}/man3/*.3*
 
